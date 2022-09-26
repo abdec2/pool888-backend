@@ -39,6 +39,9 @@
     },
     "commission_level4": {
       "type": "decimal"
+    },
+    "level": {
+      "type": "integer"
     }
   }
 }
