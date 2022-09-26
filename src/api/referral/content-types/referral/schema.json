@@ -28,9 +28,6 @@
     },
     "total_earnings_888": {
       "type": "float"
-    },
-    "last_harvest_date": {
-      "type": "datetime"
     }
   }
 }

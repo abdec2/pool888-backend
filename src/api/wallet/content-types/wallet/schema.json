@@ -55,6 +55,9 @@
     },
     "parent_wallet_id": {
       "type": "string"
+    },
+    "last_harvest_time": {
+      "type": "datetime"
     }
   }
 }
