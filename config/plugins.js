@@ -9,8 +9,7 @@ module.exports = ({ env }) => ({
           auth: {
             user: env('SMTP_USERNAME'),
             pass: env('SMTP_PASSWORD'),
-          },
-          // ... any custom nodemailer options
+          },          // ... any custom nodemailer options
         },
         settings: {
           defaultFrom: env('SMTP_USERNAME'),

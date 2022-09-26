@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "packages",
+  "info": {
+    "singularName": "package",
+    "pluralName": "packages",
+    "displayName": "MLMPackage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "value": {
+      "type": "integer"
+    },
+    "wallets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::wallet.wallet"
+    },
+    "referral_levels": {
+      "type": "integer"
+    },
+    "commission_level1": {
+      "type": "decimal"
+    },
+    "commission_level2": {
+      "type": "decimal"
+    },
+    "commission_level3": {
+      "type": "decimal"
+    },
+    "commission_level4": {
+      "type": "decimal"
+    }
+  }
+}

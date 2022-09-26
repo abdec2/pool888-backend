@@ -69,7 +69,7 @@
     },
     "lastname": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "country": {
       "type": "string",
@@ -80,6 +80,14 @@
     },
     "address": {
       "type": "text"
+    },
+    "wallets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::wallet.wallet"
+    },
+    "parent_wallet_id": {
+      "type": "string"
     }
   }
 }

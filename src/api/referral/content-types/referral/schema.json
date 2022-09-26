@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "referrals",
+  "info": {
+    "singularName": "referral",
+    "pluralName": "referrals",
+    "displayName": "Referral",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "parent_wallet": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wallet.wallet"
+    },
+    "child_wallet": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wallet.wallet"
+    },
+    "level": {
+      "type": "integer",
+      "required": true
+    },
+    "total_earnings_888": {
+      "type": "float"
+    },
+    "last_harvest_date": {
+      "type": "datetime"
+    }
+  }
+}

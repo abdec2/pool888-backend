@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "wallets",
+  "info": {
+    "singularName": "wallet",
+    "pluralName": "wallets",
+    "displayName": "Wallet",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "wallet_id": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Primary",
+        "Secondary"
+      ]
+    },
+    "package": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::package.package"
+    },
+    "balance": {
+      "type": "float"
+    },
+    "harvests": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::harvest.harvest"
+    },
+    "wallet_address": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "withdrawals": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::withdrawal.withdrawal",
+      "mappedBy": "from_wallet"
+    },
+    "referrals": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::referral.referral"
+    },
+    "parent_wallet_id": {
+      "type": "string"
+    }
+  }
+}

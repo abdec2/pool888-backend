@@ -15,7 +15,7 @@
     "@strapi/provider-email-nodemailer": "^4.3.8",
     "@strapi/strapi": "4.3.7",
     "mysql": "2.18.1",
-    "strapi": "^3.6.10"
+    "strapi-plugin-populate-deep": "^0.1.2"
   },
   "author": {
     "name": "A Strapi developer"
