@@ -4,7 +4,7 @@
  * A set of functions called "actions" for `referral-add`
  */
 
- module.exports = {
+module.exports = {
   addref: async (ctx, next) => {
     try {
       const users = await strapi.entityService.findMany('api::wallet.wallet', {
@@ -12,18 +12,19 @@
       })
       users.map(async item => {
         let connected_wallet =  item; 
-        let current_package_value = 0;
+        let current_package_level = 0;
         let current_wallet = connected_wallet
 
         for(let level = 1; level <= 4; level++) {
           let parent_wallet = await strapi.service('api::referral-add.referral-add').parentOf(current_wallet);
-          if(parent_wallet){
-            if((parent_wallet.parent_wallet_id === null) || (parent_wallet.package.level > current_package_value)) {
-              await strapi.service('api::referral-add.referral-add').createReferral(parent_wallet, connected_wallet, level);
+          if(parent_wallet){ 
+            if(parent_wallet.package !== null && parent_wallet.package.level > current_package_level) {
+                await strapi.service('api::referral-add.referral-add').createReferral(parent_wallet, connected_wallet, level);
             }
           }
+          else break;
           current_wallet = parent_wallet;
-          current_package_value++;
+          current_package_level++;
         }
       })
        ctx.send(JSON.stringify(users))
@@ -31,5 +32,6 @@
     } catch (err) {
       ctx.body = err;
     }
+    return 
   }
 };
