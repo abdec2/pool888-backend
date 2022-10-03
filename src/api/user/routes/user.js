@@ -29,5 +29,14 @@ module.exports = {
         middlewares: [],
       },
      },
+     {
+      method: 'POST',
+      path: '/user/signIn',
+      handler: 'user.signIn',
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+     },
   ],
 };

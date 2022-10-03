@@ -58,6 +58,12 @@
     },
     "last_harvest_time": {
       "type": "datetime"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "wallets"
     }
   }
 }

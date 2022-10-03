@@ -81,13 +81,14 @@
     "address": {
       "type": "text"
     },
+    "parent_wallet_id": {
+      "type": "string"
+    },
     "wallets": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::wallet.wallet"
-    },
-    "parent_wallet_id": {
-      "type": "string"
+      "target": "api::wallet.wallet",
+      "mappedBy": "users_permissions_user"
     }
   }
 }
