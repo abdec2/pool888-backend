@@ -54,16 +54,16 @@
     "last_harvest_time": {
       "type": "datetime"
     },
-    "users_permissions_user": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "wallets"
-    },
     "package": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::package.package",
+      "inversedBy": "wallets"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
       "inversedBy": "wallets"
     }
   }
