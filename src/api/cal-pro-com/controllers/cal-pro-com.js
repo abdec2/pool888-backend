@@ -20,9 +20,7 @@ module.exports = {
         harvestTimeInMinutes = strapi.service('api::cal-pro-com.cal-pro-com').getTimeDifference(new Date(), new Date(lastHarvestTime))
         profit = parseFloat(haresterWallet.balance * harvestTimeInMinutes * apy).toFixed(2);
       }
-
       const referral = await strapi.service('api::cal-pro-com.cal-pro-com').getReferral(harvesterId);
-      // console.log(referral)
       if (referral) {
           commission = referral.map(item => {
           const childLHT = item.child_wallet.last_harvest_time;
@@ -65,8 +63,7 @@ module.exports = {
           }
         })
       }
-
-
+      
       const result = [
         {
           "this_farmer": haresterWallet.wallet_id,
@@ -82,7 +79,6 @@ module.exports = {
         },
         ...commission
       ];
-
       ctx.send(result);
     } catch (err) {
       ctx.body = err;

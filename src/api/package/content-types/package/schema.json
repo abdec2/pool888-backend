@@ -20,11 +20,6 @@
     "value": {
       "type": "integer"
     },
-    "wallets": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::wallet.wallet"
-    },
     "referral_levels": {
       "type": "integer"
     },
@@ -42,6 +37,12 @@
     },
     "level": {
       "type": "integer"
+    },
+    "wallets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::wallet.wallet",
+      "mappedBy": "package"
     }
   }
 }

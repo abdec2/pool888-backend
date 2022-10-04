@@ -24,11 +24,6 @@
         "Secondary"
       ]
     },
-    "package": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::package.package"
-    },
     "balance": {
       "type": "float"
     },
@@ -63,6 +58,12 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
+      "inversedBy": "wallets"
+    },
+    "package": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::package.package",
       "inversedBy": "wallets"
     }
   }
