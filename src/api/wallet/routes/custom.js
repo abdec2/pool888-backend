@@ -8,17 +8,7 @@ module.exports = {
          policies: [],
          middlewares: [],
        },
-      },
-
-      {
-        method: 'GET',
-        path: '/wallet/getAllParents',
-        handler: 'wallet.getAllParents',
-        config: {
-          policies: [],
-          middlewares: [],
-        },
-       },
+      }
        
     ]
 }

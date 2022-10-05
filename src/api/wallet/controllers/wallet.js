@@ -11,19 +11,8 @@ module.exports = createCoreController('api::wallet.wallet', ({ strapi }) =>  ({
     async walletExist(ctx) {
 
         let wallets = await strapi.entityService.findMany(
-            "api::wallet.wallet", { filters: { walletName : ctx.query.WalletName }}
+            "api::wallet.wallet", { filters: { wallet_id : ctx.query.parent_wallet_id }}
           );
           return !(wallets.length === 0);
-    },
-
-    async getAllParents(ctx) {
-
-        let childWalletId = ctx.query.walletId
-      
-        const parentWaletId = strapi.service("api::wallet.wallet").getParentWallet(childWalletId)
-      
-        return parentWaletId
     }
-          
-
 }))
