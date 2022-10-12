@@ -50,5 +50,6 @@ module.exports = () => ({
         return Math.round(
             Math.abs(endDate - startDate) / msInMinutes
         );
-    }
+    },
+
 });
