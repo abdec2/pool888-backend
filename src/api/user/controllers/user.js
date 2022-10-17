@@ -84,7 +84,7 @@ module.exports = {
         provider,
         $or: [{ email: identifier.toLowerCase() }, { username: identifier }],
       },
-      populate: {role: true}
+      populate: {role: true, personal_info: true}
     });
     if (!user) {
       throw new ValidationError('Invalid identifier or password');
@@ -117,7 +117,8 @@ module.exports = {
     return ctx.send({
       jwt: getService('jwt').issue({ id: user.id }),
       user: await sanitizeUser(user, ctx),
-      role: user.role
+      role: user.role,
+      personal_info: user.personal_info
     });
 
   }
