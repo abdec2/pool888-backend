@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "personal_infos",
+  "info": {
+    "singularName": "personal-info",
+    "pluralName": "personal-infos",
+    "displayName": "PersonalInfo",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstname": {
+      "type": "string"
+    },
+    "lastname": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "personal_info"
+    },
+    "country_code": {
+      "type": "string"
+    }
+  }
+}

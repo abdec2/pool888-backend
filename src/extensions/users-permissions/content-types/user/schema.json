@@ -63,24 +63,6 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "firstname": {
-      "type": "string",
-      "required": true
-    },
-    "lastname": {
-      "type": "string",
-      "required": false
-    },
-    "country": {
-      "type": "string",
-      "required": true
-    },
-    "phone": {
-      "type": "string"
-    },
-    "address": {
-      "type": "text"
-    },
     "parent_wallet_id": {
       "type": "string"
     },
@@ -89,6 +71,12 @@
       "relation": "oneToMany",
       "target": "api::wallet.wallet",
       "mappedBy": "users_permissions_user"
+    },
+    "personal_info": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::personal-info.personal-info",
+      "inversedBy": "user"
     }
   }
 }
