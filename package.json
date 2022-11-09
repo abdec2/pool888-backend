@@ -16,6 +16,7 @@
     "@strapi/strapi": "4.3.7",
     "ethers": "^5.7.1",
     "mysql": "2.18.1",
+    "pg": "^8.8.0",
     "strapi-plugin-populate-deep": "^0.1.2"
   },
   "author": {
