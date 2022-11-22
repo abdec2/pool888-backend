@@ -8,7 +8,17 @@ module.exports = {
          policies: [],
          middlewares: [],
        },
-      }
+      },
+
+      {
+        method: 'GET',
+        path: '/wallet/userHasWallet',
+        handler: 'wallet.userHasWallet',
+        config: {
+          policies: [],
+          middlewares: [],
+        },
+       }
        
     ]
 }
