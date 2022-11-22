@@ -35,6 +35,9 @@
     },
     "country_code": {
       "type": "string"
+    },
+    "avatar": {
+      "type": "string"
     }
   }
 }
