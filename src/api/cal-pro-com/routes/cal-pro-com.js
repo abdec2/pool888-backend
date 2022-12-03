@@ -9,5 +9,15 @@ module.exports = {
        middlewares: [],
      },
     },
+
+    {
+      method: 'GET',
+      path: '/cal-pro-com/getWalletTree',
+      handler: 'cal-pro-com.getWalletTree',
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+     },
   ],
 };
