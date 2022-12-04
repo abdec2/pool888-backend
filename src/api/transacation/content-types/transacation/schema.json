@@ -26,10 +26,8 @@
       "relation": "oneToOne",
       "target": "api::wallet.wallet"
     },
-    "users_permissions_user": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+    "amount": {
+      "type": "float"
     }
   }
 }
