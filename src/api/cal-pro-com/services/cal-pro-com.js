@@ -99,7 +99,6 @@ module.exports = () => ({
           }          
     },
 
-
     getTimeDifference(endDate, startDate) {
         const msInMinutes = 60 * 1000;
         return Math.round(

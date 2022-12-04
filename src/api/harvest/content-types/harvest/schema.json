@@ -12,29 +12,14 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "profit": {
-      "type": "float"
-    },
     "commission": {
       "type": "float"
     },
-    "harvest_days": {
-      "type": "float"
-    },
-    "percentage": {
+    "harvest_duration": {
       "type": "float"
     },
     "last_harvest_date": {
       "type": "datetime"
-    },
-    "level": {
-      "type": "enumeration",
-      "enum": [
-        "L1",
-        "L2",
-        "L3",
-        "L4"
-      ]
     },
     "referral": {
       "type": "relation",
