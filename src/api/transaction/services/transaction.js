@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * harvest service
+ * transaction service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::harvest.harvest');
+module.exports = createCoreService('api::transaction.transaction');

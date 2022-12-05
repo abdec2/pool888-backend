@@ -89,7 +89,7 @@ module.exports = {
   getWalletTree: async (ctx, next) => {
 
       const id = ctx.request.query.id;
-      let complete_child_tree = await strapi.service('api::cal-pro-com.cal-pro-com').get_complete_child_tree(id);
+      let complete_child_array = await strapi.service('api::cal-pro-com.cal-pro-com').get_complete_child_array(id);
 
       let root_wallet = await strapi.service('api::cal-pro-com.cal-pro-com').getUserWallet(id);
       root_wallet = {
@@ -103,9 +103,9 @@ module.exports = {
                           children:[]                                
                   }  
 
-      complete_child_tree = [root_wallet, ...complete_child_tree]
+      complete_child_array = [root_wallet, ...complete_child_array]
 
-      const idMapping = complete_child_tree.reduce((acc, el, i) => {
+      const idMapping = complete_child_array.reduce((acc, el, i) => {
         acc[el.attributes.child] = i;
         return acc;
       }, {});
@@ -113,11 +113,11 @@ module.exports = {
       let root;
 
       try {
-          complete_child_tree.forEach(el => {
+        complete_child_array.forEach(el => {
             if (el.attributes.parent === null) {
               root = el;
             }
-            const parentEl = complete_child_tree[idMapping[el.attributes.parent]];
+            const parentEl = complete_child_array[idMapping[el.attributes.parent]];
             if (parentEl)          
               parentEl.children = [...(parentEl.children || []), el];
         });

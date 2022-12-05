@@ -57,7 +57,7 @@ module.exports = () => ({
         }
     },
 
-    async get_complete_child_tree(id) {
+    async get_complete_child_array(id) {
         
         try {
             const walletId = id
