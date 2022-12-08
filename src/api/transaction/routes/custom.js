@@ -2,8 +2,8 @@ module.exports = {
     routes: [
       {
        method: 'GET',
-       path: '/wallet/walletExist',
-       handler: 'wallet.walletExist',
+       path: '/transaction/findByWallet',
+       handler: 'transaction.findByWallet',
        config: {
          policies: [],
          middlewares: [],
@@ -12,14 +12,12 @@ module.exports = {
 
       {
         method: 'GET',
-        path: '/wallet/userHasWallet',
-        handler: 'wallet.userHasWallet',
+        path: '/transaction/findByUser',
+        handler: 'transaction.findByUser',
         config: {
           policies: [],
           middlewares: [],
         },
        },
-
-            
     ]
 }

@@ -22,7 +22,5 @@ module.exports = createCoreController('api::wallet.wallet', ({ strapi }) =>  ({
             "api::wallet.wallet", { filters: { users_permissions_user : ctx.query.user_id }}
           );
           return (wallets.length !== 0);
-    }
-
-
+    },    
 }))

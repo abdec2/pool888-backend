@@ -36,12 +36,7 @@ module.exports = () => ({
         }
     },
 
-    async sendEmailToReferrer(parent, child, level) {
-        
-              
-        strapi.log.debug(parent.users_permissions_user.email)
-        strapi.log.debug(child.wallet_id)
-
+    async getPercentageOfReferral(parent,level) {
         let percentage = 0
         switch (level) {
             case 1:
@@ -59,8 +54,31 @@ module.exports = () => ({
             default:
                 percentage = 0;
         }
+        return percentage
 
-         strapi.log.debug(percentage)
+    },
+
+    async sendEmailToReferrer(parent, child, level) {        
+           
+        const percentage = await strapi.service('api::referral-add.referral-add').getPercentageOfReferral(parent, level)        // let percentage = 0
+        // switch (level) {
+        //     case 1:
+        //     percentage = parent.package.commission_level1 ;
+        //     break;
+        //     case 2:
+        //         percentage = parent.package.commission_level2 ;
+        //     break;
+        //     case 3:
+        //         percentage = parent.package.commission_level3 ;
+        //     break;
+        //     case 4:
+        //         percentage = parent.package.commission_level4 ;
+        //     break;
+        //     default:
+        //         percentage = 0;
+        // }
+
+         console.log(percentage)
             
            
         let  client_url  = process.env.CLIENT_URL
@@ -77,10 +95,10 @@ module.exports = () => ({
             `Login to see your earnings. <br>` + client_url        
     
         }).then((res) => {
-         strapi.debug.log("Email Success")
+          console.log("Email Success")
         })
         .catch((err) => {
-        strapi.debug.log("Email Failed")
+          console.log("Email Failed")
         })             
     },    
 });

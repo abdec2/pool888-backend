@@ -31,12 +31,37 @@ module.exports = () => ({
         }
     },
 
+    async getReferralById(rid) {
+        try {
+            const referral = await strapi.db.query('api::referral.referral').findMany({
+                where: {id: rid},
+                populate: {
+                  parent_wallet: {
+                    populate: {
+                      package: true, users_permissions_user: true
+                    }
+                  }, 
+                  child_wallet: {
+                    populate: {
+                      package: true, users_permissions_user: true
+                    }
+                  }
+                }, 
+                orderBy: 'level'
+            });
+            return referral[0];
+
+        } catch(e) {
+            console.log('getReferral: ', e)
+        }
+    },
+
     async getUserWallet(id) {
         try {
             const userWallet =  await strapi.db.query('api::wallet.wallet').findOne({
                 where: {id: id},
                 populate: {
-                    package: true
+                    package: true, users_permissions_user: true
                 }
             });
             return userWallet;

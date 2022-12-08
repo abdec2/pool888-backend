@@ -5,6 +5,7 @@
  */
 
 module.exports = {
+  
   addref: async (ctx, next) => {
     try {
       const {id} = ctx.request.query;
@@ -18,7 +19,6 @@ module.exports = {
         if (parent_wallet) {
           if (parent_wallet.package !== null && parent_wallet.package.level > current_package_level) {
             await strapi.service('api::referral-add.referral-add').createReferral(parent_wallet, connected_wallet, level);
-            strapi.service('api::referral-add.referral-add').sendEmailToReferrer(parent_wallet, connected_wallet, level);
           }
         }
         else break;

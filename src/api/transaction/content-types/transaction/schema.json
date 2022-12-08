@@ -4,14 +4,15 @@
   "info": {
     "singularName": "transaction",
     "pluralName": "transactions",
-    "displayName": "Transaction"
+    "displayName": "Transaction",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "conncted_wallet": {
+    "wallet": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::wallet.wallet"
@@ -34,12 +35,10 @@
     "amount": {
       "type": "float"
     },
-    "notification_status": {
-      "type": "enumeration",
-      "enum": [
-        "current",
-        "archived"
-      ]
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }
