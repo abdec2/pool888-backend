@@ -21,5 +21,39 @@ module.exports = createCoreController('api::notification.notification', ({ strap
                 console.log(e)
             }
     },
-    
+
+    async getCurrentNotifications(ctx) {
+        
+        try {
+            const notifications = await strapi.entityService.findMany('api::notification.notification', {
+                filters: {users_permissions_user: ctx.request.query.userid , status: 'current'},
+                sort: 'createdAt'
+             }) 
+            return notifications;
+        } catch(e) {
+            console.log(e)
+        }    
+    } ,   
+
+    async setCurToArchived(ctx) {
+        
+        try {
+            const notifications = await strapi.entityService.findMany('api::notification.notification', {
+                filters: {users_permissions_user: ctx.request.query.userid , status: 'current'},
+             }) 
+            
+             notifications.forEach(notification  => {
+                strapi.entityService.update('api::notification.notification', notification.id, {
+                    data: {
+                      status: 'archived',
+                    },
+                  });
+             })     
+             return true     
+        } catch(e) {
+            console.log(e)
+            return false
+        }
+
+    }
 }))

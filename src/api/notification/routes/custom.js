@@ -9,6 +9,17 @@ module.exports = {
          middlewares: [],
        },
       },
+
+      {
+        method: 'GET',
+        path: '/notification/setCurToArchived',
+        handler: 'notification.setCurToArchived',
+        config: {
+          policies: [],
+          middlewares: [],
+        },
+       },
+
     ],
   };
   

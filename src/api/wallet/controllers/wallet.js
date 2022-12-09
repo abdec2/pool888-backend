@@ -38,7 +38,6 @@ module.exports = createCoreController('api::wallet.wallet', ({ strapi }) =>  ({
                 balance: element.balance
             } 
         })
-        console.log(wallets)
-          return wallets
+        return wallets
     } 
 }))
