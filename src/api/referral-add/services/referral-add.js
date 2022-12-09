@@ -61,24 +61,8 @@ module.exports = () => ({
     async sendEmailToReferrer(parent, child, level) {        
            
         const percentage = await strapi.service('api::referral-add.referral-add').getPercentageOfReferral(parent, level)        // let percentage = 0
-        // switch (level) {
-        //     case 1:
-        //     percentage = parent.package.commission_level1 ;
-        //     break;
-        //     case 2:
-        //         percentage = parent.package.commission_level2 ;
-        //     break;
-        //     case 3:
-        //         percentage = parent.package.commission_level3 ;
-        //     break;
-        //     case 4:
-        //         percentage = parent.package.commission_level4 ;
-        //     break;
-        //     default:
-        //         percentage = 0;
-        // }
-
-         console.log(percentage)
+      
+        console.log(percentage)
             
            
         let  client_url  = process.env.CLIENT_URL

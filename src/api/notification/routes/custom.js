@@ -20,6 +20,15 @@ module.exports = {
         },
        },
 
+       {
+        method: 'GET',
+        path: '/notification/getCurNotifications',
+        handler: 'notification.getCurNotifications',
+        config: {
+          policies: [],
+          middlewares: [],
+        },
+       },
     ],
   };
   

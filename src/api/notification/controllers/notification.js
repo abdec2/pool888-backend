@@ -22,7 +22,7 @@ module.exports = createCoreController('api::notification.notification', ({ strap
             }
     },
 
-    async getCurrentNotifications(ctx) {
+    async getCurNotifications(ctx) {
         
         try {
             const notifications = await strapi.entityService.findMany('api::notification.notification', {
