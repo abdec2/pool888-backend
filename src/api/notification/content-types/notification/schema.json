@@ -4,10 +4,11 @@
   "info": {
     "singularName": "notification",
     "pluralName": "notifications",
-    "displayName": "Notification"
+    "displayName": "Notification",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -35,6 +36,13 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::referral.referral"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "current",
+        "archived"
+      ]
     }
   }
 }

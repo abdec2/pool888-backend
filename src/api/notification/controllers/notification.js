@@ -10,12 +10,11 @@ module.exports = createCoreController('api::notification.notification', ({ strap
     // Method 1: Creating an entirely custom action
     async findByUser(ctx) {      
 
-            console.log(ctx.request.query.userid)
             try {
-                const notifications = await strapi.db.query('api::notification.notification').findMany({
-                    where: {users_permissions_user : ctx.request.query.userid},
-                    orderBy: 'createdAt'
-                });
+                const notifications = await strapi.entityService.findMany('api::notification.notification', {
+                    filters: {users_permissions_user: ctx.request.query.userid },
+                    sort: 'createdAt',
+                 }) 
                 return notifications;
     
             } catch(e) {
