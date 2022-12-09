@@ -5,8 +5,6 @@ module.exports = {
     async afterFindMany(event) {
 
         const { result, params } = event;
-        console.log(result)
-        console.log()
         const notifications = result ;
 
         notifications.forEach(async element => {

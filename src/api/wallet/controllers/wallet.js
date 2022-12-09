@@ -23,4 +23,22 @@ module.exports = createCoreController('api::wallet.wallet', ({ strapi }) =>  ({
           );
           return (wallets.length !== 0);
     },    
+
+    async getUserWallets(ctx){
+
+        let wallets = await strapi.entityService.findMany(
+            "api::wallet.wallet", { filters: { users_permissions_user : ctx.query.user_id }}
+          );
+
+        wallets = wallets.map(element => {
+            return {
+                wallet_id:element.wallet_id, 
+                wallet_address:element.wallet_address,                
+                joining_date : element.createdAt,
+                balance: element.balance
+            } 
+        })
+        console.log(wallets)
+          return wallets
+    } 
 }))

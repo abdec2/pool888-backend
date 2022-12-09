@@ -20,6 +20,14 @@ module.exports = {
         },
        },
 
-            
+       {
+        method: 'GET',
+        path: '/wallet/getUserWallets',
+        handler: 'wallet.getUserWallets',
+        config: {
+          policies: [],
+          middlewares: [],
+        },
+       },  
     ]
 }
