@@ -24,7 +24,7 @@ module.exports = {
         const ntext = `Congratulations `+ wallets[0].users_permissions_user.username +  `!. You just acquired `+ wallets[0].package.name +
         ` package with your <br> wallet id:` + wallets[0].wallet_id  + ` wallet address : ` + wallets[0].wallet_address    
 
-        const notification = await strapi.entityService.create('api::notification.notification', {
+        strapi.entityService.create('api::notification.notification', {
           data: {
             text: ntext ,
             type: 'transaction',
