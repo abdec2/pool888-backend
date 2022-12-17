@@ -19,9 +19,6 @@
         "transaction"
       ]
     },
-    "text": {
-      "type": "text"
-    },
     "transaction": {
       "type": "relation",
       "relation": "oneToOne",
@@ -43,6 +40,9 @@
         "current",
         "archived"
       ]
+    },
+    "text": {
+      "type": "text"
     }
   }
 }
