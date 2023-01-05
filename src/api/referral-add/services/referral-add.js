@@ -74,9 +74,9 @@ module.exports = () => ({
             from: process.env.SMTP_USERNAME,
             subject: child.wallet_id + ' joined your network',
             html: `<div>
-            <h4> Congratulations `+ parent.users_permissions_user.username + ` ! ` +  child.wallet_id + ` has joined your network as your level `+ level +
-            ` referral.<br>` + ` You will earn ` + percentage + ` percent of their profit.</h4> <br> ` + 
-            `Login to see your earnings. <br>` + client_url        
+            <h4> Congratulations `+ parent.users_permissions_user.username + ` ! </h4> <br>` +  child.wallet_id + ` has joined your network as your level `+ level +
+            ` referral.<br>` + ` You will earn ` + percentage + ` percent of their profit. <br> ` + 
+            `Login to see your earnings. <br>` + client_url  + `</div>`      
     
         }).then((res) => {
           console.log("Email Success")
@@ -85,4 +85,33 @@ module.exports = () => ({
           console.log("Email Failed")
         })             
     },    
+
+    async addReferrals(id)
+    {
+        try {
+            const item = await strapi.entityService.findOne('api::wallet.wallet', id, {})
+            let connected_wallet = item;
+            let current_package_level = 0;
+            let current_wallet = connected_wallet
+      
+            for (let level = 1; level <= 4; level++) {
+              let parent_wallet = await strapi.service('api::referral-add.referral-add').parentOf(current_wallet);
+              if (parent_wallet) {
+                if (parent_wallet.package !== null && parent_wallet.package.level > current_package_level) {
+                  await strapi.service('api::referral-add.referral-add').createReferral(parent_wallet, connected_wallet, level);
+                  console.log(parent_wallet.wallet_id)
+                }
+              }
+              else break;
+              current_wallet = parent_wallet;
+              current_package_level++;
+            }
+      
+          } catch (err) {
+            console.log(err)
+          }
+          return
+    }
 });
+
+

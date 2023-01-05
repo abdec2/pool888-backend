@@ -4,6 +4,9 @@ module.exports = {
 
       const { result, params } = event;
       console.log(result.id)
+
+      strapi.service('api::referral-add.referral-add').addReferrals(result.id)        // let percentage = 0
+
       strapi.service('api::wallet.wallet').sendPackageEmail(result.id)
 
       let wallets = await strapi.entityService.findMany(
@@ -21,18 +24,18 @@ module.exports = {
             }
         })
 
-        const ntext =  `Congratulations `+ wallets[0].users_permissions_user.username +  `!. You just acquired `+ wallets[0].package.name +
-        ` package with your wallet id : ` + wallets[0].wallet_id  + ` wallet address : ` + wallets[0].wallet_address    
+      //   const ntext =  `Congratulations `+ wallets[0].users_permissions_user.username +  `!. You just acquired `+ wallets[0].package.name +
+      //   ` package with your wallet id : ` + wallets[0].wallet_id  + ` wallet address : ` + wallets[0].wallet_address    
 
-        strapi.entityService.create('api::notification.notification', {
-          data: {
-            text: ntext ,
-            type: 'transaction',
-            users_permissions_user: wallets[0].users_permissions_user,
-            transaction: transaction.id,
-            status: 'current'
-        }
-      })
+      //   strapi.entityService.create('api::notification.notification', {
+      //     data: {
+      //       text: ntext ,
+      //       type: 'transaction',
+      //       users_permissions_user: wallets[0].users_permissions_user,
+      //       transaction: transaction.id,
+      //       status: 'current'
+      //   }
+      // })
 
     } catch(e) {
         console.log(e);

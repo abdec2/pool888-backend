@@ -25,8 +25,10 @@ module.exports = createCoreService('api::wallet.wallet', ({ strapi }) =>  ({
             from: process.env.SMTP_USERNAME,
             subject:  wallet.package.name  + ` Package`, 
             html: `<div>
-            <h4> Congratulations `+ wallet.users_permissions_user.username +  `!. You just acquired `+ wallet.package.name +
-            ` package with your <br> wallet id:` + wallet.wallet_id  + ` wallet address : ` + wallet.wallet_address + `. <br> 60 % of which will go to level 1 staking contract and 40% buys 888 governance tokens. <h4> </div>`    
+            <h4> Congratulations `+ wallet.users_permissions_user.username +  `!</h4> You just acquired `+ wallet.package.name +
+            ` package with your <br> wallet id: ` + wallet.wallet_id  + `<br> wallet address : ` + wallet.wallet_address + 
+            `<br> value: ` + wallet.package.value + ' USDT' +
+            `. <br> 60 % of which will go to level 1 staking contract and 40% buys 888 governance tokens. </div>`    
     
         }).then((res) => {
             console.log("Email Success")
