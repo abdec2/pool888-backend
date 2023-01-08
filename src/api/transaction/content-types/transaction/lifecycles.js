@@ -23,12 +23,6 @@ module.exports = {
                     You just acquired ${transactions[0].wallet.package.name} package with your
                     <br> wallet id : ${transactions[0].wallet.wallet_id}
                     <br> wallet address : ${transactions[0].wallet.wallet_address}
-                    
-                    <div style= "">
-                    <h6 style="text-align:right; margin-top: 1rem;">
-                    ${transactions[0].createdAt.slice(0,10)}  
-                    </h6>                    
-                    </div>
                     </div>`
 
                 strapi.entityService.create('api::notification.notification', {
@@ -44,12 +38,7 @@ module.exports = {
                 // const ntext =  `Congratulations `+ transactions[0].wallet.users_permissions_user.username +  `!. You received `+ transactions[0].amount +
                 // ` 888 tokens from your level ` + transactions[0].referral.level + ` referral: ` +  transactions[0].referral.child_wallet.wallet_id 
                 const ntext = `<div style="padding:1rem;"><h6 style="color:#FFC23C;">Congratulations  ${transactions[0].wallet.users_permissions_user.username}!</h6> You received ${transactions[0].amount} 888 tokens from your level ${transactions[0].referral.level} referral: ${transactions[0].referral.child_wallet.wallet_id}
-                <div style= "">
-                <h6 style="text-align:right; margin-top: 1rem;">
-                ${transactions[0].createdAt.slice(0,10)}                   
-                   </h6>
-                </div>
-                </div>`
+                               </div>`
 
                 strapi.entityService.create('api::notification.notification', {
                     data: {
@@ -67,11 +56,6 @@ module.exports = {
 
                 const ntext = `<div style="padding:1rem;"><h6 style="color:#FFC23C;">Congratulations ${transactions[0].wallet.users_permissions_user.username}!</h6>
                  You harvested ${transactions[0].amount} 888 tokens of your earnings.
-                <div style= "">
-                <h6 style="text-align:right; margin-top: 1rem;">
-                ${transactions[0].createdAt.slice(0,10)}
-                </h6>               
-                </div>
                 </div>`
 
                 strapi.entityService.create('api::notification.notification', {
@@ -85,8 +69,12 @@ module.exports = {
                 })
             } else if (transactions[0].type === 'withdrawal') {
 
-                const ntext =  ` You withdrew `+ transactions[0].amount +
-                ` USDT from your wallet id: ` + transactions[0].wallet.wallet_id 
+                // const ntext =  ` You withdrew `+ transactions[0].amount +
+                // ` USDT from your wallet id: ` + transactions[0].wallet.wallet_id 
+
+                const ntext = `<div>
+                 You withdrew ${transactions[0].amount} from your wallet id: ${transactions[0].wallet.wallet_id} 
+                </div>`
 
                 strapi.entityService.create('api::notification.notification', {
                     data: {
