@@ -13,7 +13,7 @@ module.exports = createCoreController('api::notification.notification', ({ strap
             try {
                 const notifications = await strapi.entityService.findMany('api::notification.notification', {
                     filters: {users_permissions_user: ctx.request.query.userid },
-                    sort: 'createdAt',
+                    sort: {createdAt: 'desc'}
                  }) 
                 return notifications;
     
@@ -27,7 +27,7 @@ module.exports = createCoreController('api::notification.notification', ({ strap
         try {
             const notifications = await strapi.entityService.findMany('api::notification.notification', {
                 filters: {users_permissions_user: ctx.request.query.userid , status: 'current'},
-                sort: 'createdAt'
+                sort: {createdAt: 'desc'}
              }) 
             return notifications;
         } catch(e) {
