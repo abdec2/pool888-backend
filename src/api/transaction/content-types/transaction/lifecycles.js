@@ -15,8 +15,21 @@ module.exports = {
       try{
                
             if (transactions[0].type === 'package') {
-                const ntext =  `Congratulations `+ transactions[0].wallet.users_permissions_user.username +  `!. You acquired `+ transactions[0].wallet.package.name +
-                ` package with your wallet id : ` + transactions[0].wallet.wallet_id  + ` wallet address : ` + transactions[0].wallet.wallet_address    
+                // const ntext =  `Congratulations `+ transactions[0].wallet.users_permissions_user.username +  `!. You acquired `+ transactions[0].wallet.package.name +
+                // ` package with your wallet id : ` + transactions[0].wallet.wallet_id  + ` wallet address : ` + transactions[0].wallet.wallet_address    
+
+                const ntext = `<div style="padding:1rem;">
+                    <h6 style="color:#FFC23C;">Congratulations ${transactions[0].wallet.users_permissions_user.username}</h6>
+                    You just acquired ${transactions[0].wallet.package.name} package with your
+                    <br> wallet id : ${transactions[0].wallet.wallet_id}
+                    <br> wallet address : ${transactions[0].wallet.wallet_address}
+                    
+                    <div style= "">
+                    <h6 style="text-align:right; margin-top: 1rem;">
+                    ${transactions[0].createdAt.slice(0,10)}  
+                    </h6>                    
+                    </div>
+                    </div>`
 
                 strapi.entityService.create('api::notification.notification', {
                     data: {
@@ -28,8 +41,15 @@ module.exports = {
                     }
                 })
             } else if (transactions[0].type === 'commission') {
-                const ntext =  `Congratulations `+ transactions[0].wallet.users_permissions_user.username +  `!. You received `+ transactions[0].amount +
-                ` 888 tokens from your level ` + transactions[0].referral.level + ` referral: ` +  transactions[0].referral.child_wallet.wallet_id 
+                // const ntext =  `Congratulations `+ transactions[0].wallet.users_permissions_user.username +  `!. You received `+ transactions[0].amount +
+                // ` 888 tokens from your level ` + transactions[0].referral.level + ` referral: ` +  transactions[0].referral.child_wallet.wallet_id 
+                const ntext = `<div style="padding:1rem;"><h6 style="color:#FFC23C;">Congratulations  ${transactions[0].wallet.users_permissions_user.username}!</h6> You received ${transactions[0].amount} 888 tokens from your level ${transactions[0].referral.level} referral: ${transactions[0].referral.child_wallet.wallet_id}
+                <div style= "">
+                <h6 style="text-align:right; margin-top: 1rem;">
+                ${transactions[0].createdAt.slice(0,10)}                   
+                   </h6>
+                </div>
+                </div>`
 
                 strapi.entityService.create('api::notification.notification', {
                     data: {
@@ -42,8 +62,17 @@ module.exports = {
                 })
             } else if (transactions[0].type === 'harvest') {
 
-                const ntext =  ` You harvested `+ transactions[0].amount +
-                ` 888 tokens from your earnings` 
+                // const ntext =  ` You harvested `+ transactions[0].amount +
+                // ` 888 tokens from your earnings` 
+
+                const ntext = `<div style="padding:1rem;"><h6 style="color:#FFC23C;">Congratulations ${transactions[0].wallet.users_permissions_user.username}!</h6>
+                 You harvested ${transactions[0].amount} 888 tokens of your earnings.
+                <div style= "">
+                <h6 style="text-align:right; margin-top: 1rem;">
+                ${transactions[0].createdAt.slice(0,10)}
+                </h6>               
+                </div>
+                </div>`
 
                 strapi.entityService.create('api::notification.notification', {
                     data: {
