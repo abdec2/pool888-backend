@@ -14,8 +14,7 @@ module.exports = {
     //   const ntext = `Congratulations ` +  referral.parent_wallet.users_permissions_user.username + `! `+ referral.child_wallet.wallet_id + `! has joined your network as your level `+ referral.level +
     //   ` referral.` + ` You will earn ` + percentage + ` percent of their profit. ` 
       
-      const ntext = `<div style="padding:1rem;"><h6 style="color:#FFC23C;">Congratulations ${referral.parent_wallet.users_permissions_user.username}!</h6> ${referral.child_wallet.wallet_id}! has joined your network as your level ${referral.level} referral. You will earn 
-      ${percentage} percent of their profit. </div>`
+      const ntext = `<div style="padding:1rem;"><h6 style="color:#FFC23C;">Congratulations ${referral.parent_wallet.users_permissions_user.username}!</h6> ${referral.child_wallet.wallet_id}! has joined your network as your level ${referral.level} referral. You will earn ${percentage} percent of their profit. </div>`
       try{
         const notification = await strapi.entityService.create('api::notification.notification', {
             data: {
