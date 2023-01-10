@@ -20,7 +20,10 @@
     "type": {
       "type": "enumeration",
       "enum": [
+        "feededucted",
         "package",
+        "staking",
+        "tokenspurchase",
         "harvest",
         "withdrawal",
         "upgrade",
