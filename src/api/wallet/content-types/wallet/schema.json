@@ -58,14 +58,10 @@
     "staked_amount": {
       "type": "decimal"
     },
-    "currency": {
-      "type": "enumeration",
-      "enum": [
-        "USDC",
-        "USDT",
-        "WMATIC",
-        "WETH"
-      ]
+    "pool": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::pool.pool"
     }
   }
 }

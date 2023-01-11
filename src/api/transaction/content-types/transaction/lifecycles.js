@@ -64,7 +64,7 @@ module.exports = {
                 // const ntext =  ` You withdrew `+ transactions[0].amount +
                 // ` USDT from your wallet id: ` + transactions[0].wallet.wallet_id 
 
-                const ntext = `<div>You withdrew ${transactions[0].amount} from your wallet id: ${transactions[0].wallet.wallet_id}</div>`
+                const ntext = `<div style="padding:1rem;">You withdrew ${transactions[0].amount} from your wallet id: ${transactions[0].wallet.wallet_id}</div>`
 
                 strapi.entityService.create('api::notification.notification', {
                     data: {
