@@ -27,7 +27,8 @@
         "harvest",
         "withdrawal",
         "upgrade",
-        "commission"
+        "commission",
+        "gratitude"
       ]
     },
     "referral": {
