@@ -61,7 +61,7 @@ module.exports = () => ({
             const userWallet =  await strapi.db.query('api::wallet.wallet').findOne({
                 where: {id: id},
                 populate: {
-                    package: true, users_permissions_user: true
+                    package: true, users_permissions_user: true, pool: true
                 }
             });
             return userWallet;

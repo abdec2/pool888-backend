@@ -18,7 +18,7 @@ module.exports = {
       const haresterWallet = await strapi.service('api::cal-pro-com.cal-pro-com').getUserWallet(harvesterId);
       const hWalletAddress = haresterWallet.wallet_address;
       const contract = new ethers.Contract(STAKING_SMART_CONTRACT, ContractInterface, provider);
-      const reward = await contract.pendingToken(1, hWalletAddress);
+      const reward = await contract.pendingToken(haresterWallet.pool.pid, hWalletAddress);
 
       let profit = parseFloat(ethers.utils.formatUnits(reward, '8'));
       let commission = null;

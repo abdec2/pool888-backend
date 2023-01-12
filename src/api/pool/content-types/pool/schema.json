@@ -32,6 +32,9 @@
     },
     "deposit_fee": {
       "type": "integer"
+    },
+    "pid": {
+      "type": "integer"
     }
   }
 }
