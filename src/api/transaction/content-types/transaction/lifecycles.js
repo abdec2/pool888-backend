@@ -9,7 +9,8 @@ module.exports = {
         "api::transaction.transaction", { filters: { id : result.id}, 
         populate: {users_permissions_user: true, 
                    wallet: {populate: {package:true,users_permissions_user:true}}, 
-                   referral: {populate:{parent_wallet:true, child_wallet:true}}
+                   referral: {populate:{parent_wallet:true, child_wallet:true}},
+                   parent_wallet: {populate: {package:true,users_permissions_user:true}}
         }});
    
       try{
@@ -65,6 +66,22 @@ module.exports = {
                 // ` USDT from your wallet id: ` + transactions[0].wallet.wallet_id 
 
                 const ntext = `<div style="padding:1rem;">You withdrew ${transactions[0].amount} from your wallet id: ${transactions[0].wallet.wallet_id}</div>`
+
+                strapi.entityService.create('api::notification.notification', {
+                    data: {
+                        text: ntext ,
+                        type: 'transaction',
+                        users_permissions_user: transactions[0].users_permissions_user,
+                        transaction: transactions[0].id,
+                        status: 'current'
+                    }
+                })
+            } else if (transactions[0].type === 'gratitude') {
+
+                // const ntext =  ` You withdrew `+ transactions[0].amount +
+                // ` USDT from your wallet id: ` + transactions[0].wallet.wallet_id 
+
+                const ntext = `<div style="padding:1rem;">You received  gratitude reward from your parent wallet id: ${transactions[0].parent_wallet.wallet_id}</div>`
 
                 strapi.entityService.create('api::notification.notification', {
                     data: {

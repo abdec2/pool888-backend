@@ -28,12 +28,17 @@ module.exports = createCoreController('api::transaction.transaction', ({ strapi 
                         package: true, users_permissions_user:true, pool:true
                        }
                     }
-                  }
+                  },
+                  parent_wallet:{
+                    populate: {
+                        package: true, users_permissions_user: true, pool:true
+                    }
+                  } 
                 }, 
                 orderBy: 'createdAt'
             });
 
-            const transactionWDetail = Promise.all(transactions.map(async item => {
+            const transactionWDetail = await Promise.all(transactions.map(async item => {
 
               let description = null;
               let amount = null
@@ -50,7 +55,7 @@ module.exports = createCoreController('api::transaction.transaction', ({ strapi 
 
               } else if (item.type === 'staking') {
 
-                description = `60% of package value stake 888 tokens`
+                description = `60% of package value stake and mint 888 tokens`
                 amount = `${item.amount} ${item.wallet.pool.currency}`
 
               } else if (item.type === 'tokenspurchase') {
@@ -61,7 +66,7 @@ module.exports = createCoreController('api::transaction.transaction', ({ strapi 
               } else if (item.type === 'harvest') {
 
                 description = `888 tokens harvested/claimed` 
-                amount = `${item.amount} 888`          
+                amount = `${item.amount} `          
 
               } else if (item.type === 'withdrawal') {
 
@@ -70,15 +75,20 @@ module.exports = createCoreController('api::transaction.transaction', ({ strapi 
 
               } else if (item.type === 'commission'){
 
-                description = `Received commission from ${item.referal.child_wallet.wallet_id}`  
-                amount = `${item.amount} 888`  
+                description = `Received commission from ${item.referral.child_wallet.wallet_id}`  
+                amount = `${item.amount} ` 
+
+              }  else if (item.type === 'gratitude'){
+
+                description = `Received gratitude reward from ${item.parent_wallet.wallet_id}`  
+                amount = `${item.amount} `  
               }
                 return {
-                  "TRANSACTION TIME" : item.createdAt,
+                  "TRANSACTION_TIME" : item.createdAt,
                   "DESCRIPTION": description,
                   "AMOUNT": amount
                 }
-              }))                                   
+              }))                                 
 
             return transactionWDetail;
 
@@ -108,12 +118,17 @@ module.exports = createCoreController('api::transaction.transaction', ({ strapi 
                         package: true, users_permissions_user:true, pool:true
                        }
                     }
-                  }
+                  },
+                  parent_wallet:{
+                    populate: {
+                        package: true, users_permissions_user: true, pool:true
+                    }
+                  } 
                 }, 
                 orderBy: 'createdAt'
             });
 
-            const transactionWDetail = Promise.all(transactions.map(async item => {
+            const transactionWDetail = transactions.map(async item => {
 
               let description = null;
               let amount = null
@@ -130,7 +145,7 @@ module.exports = createCoreController('api::transaction.transaction', ({ strapi 
 
               } else if (item.type === 'staking') {
 
-                description = `60% of package value stake 888 tokens`
+                description = `60% of package value stake and mint 888 tokens`
                 amount = `${item.amount} ${item.wallet.pool.currency}`
 
               } else if (item.type === 'tokenspurchase') {
@@ -152,14 +167,18 @@ module.exports = createCoreController('api::transaction.transaction', ({ strapi 
 
                 description = `Received commission from ${item.referal.child_wallet.wallet_id}`  
                 amount = `${item.amount} 888`  
+
+              } else if (item.type === 'gratitude'){
+
+                description = `Received gratitude reward from ${item.parent_wallet_id}`  
+                amount = `${item.amount} 888`  
               }
                 return {
-                  "TRANSACTION TIME" : item.createdAt,
+                  "TRANSACTION_TIME" : item.createdAt,
                   "DESCRIPTION": description,
                   "AMOUNT": amount
-                }                   
-
-              }))  
+                }                 
+              })
                           
             return transactionWDetail;
 
