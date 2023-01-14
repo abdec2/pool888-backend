@@ -85,7 +85,8 @@ module.exports = createCoreController('api::transaction.transaction', ({ strapi 
               }
                 return {
                   "TRANSACTION_TIME" : item.createdAt,
-                  "DESCRIPTION": description,
+                  "TYPE" : item.type,
+                  "DESCRIPTION" : description,
                   "AMOUNT": amount
                 }
               }))                                 
@@ -173,11 +174,12 @@ module.exports = createCoreController('api::transaction.transaction', ({ strapi 
                 description = `Received gratitude reward from ${item.parent_wallet_id}`  
                 amount = `${item.amount} 888`  
               }
-                return {
-                  "TRANSACTION_TIME" : item.createdAt,
-                  "DESCRIPTION": description,
-                  "AMOUNT": amount
-                }                 
+              return {
+                "TRANSACTION_TIME" : item.createdAt,
+                "TYPE" : item.type,
+                "DESCRIPTION" : description,
+                "AMOUNT": amount
+              }              
               })
                           
             return transactionWDetail;
