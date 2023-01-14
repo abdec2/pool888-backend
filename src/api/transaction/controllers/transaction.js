@@ -54,8 +54,8 @@ module.exports = createCoreController('api::transaction.transaction', ({ strapi 
                 amount = `${item.amount} ${item.wallet.pool.currency}`
 
               } else if (item.type === 'staking') {
-
-                description = `60% of package value stake and mint 888 tokens`
+                if (item.wallet.package.name !== "Freedom") description = `60% of package value stake and mint 888 tokens`
+                else description = "100% amount stake and mint 888 tokens"
                 amount = `${item.amount} ${item.wallet.pool.currency}`
 
               } else if (item.type === 'tokenspurchase') {
