@@ -46,7 +46,8 @@ module.exports = createCoreController('api::transaction.transaction', ({ strapi 
               if (item.type === 'package') {
 
                 description = `Acquisition of ${item.wallet.package.name} package`
-                amount = `${item.amount} ${item.wallet.pool.currency}`
+                const staked_amount = item.wallet.balance * 100 /95
+                amount = item.wallet.package.name !== "Freedom"? `${item.wallet.package.value} ${item.wallet.pool.currency}`: `${staked_amount} ${item.wallet.pool.currency}`
                             
               } else if (item.type === 'feededucted') {  
 
