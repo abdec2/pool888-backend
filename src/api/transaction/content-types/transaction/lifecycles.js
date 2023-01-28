@@ -12,86 +12,81 @@ module.exports = {
                    referral: {populate:{parent_wallet:true, child_wallet:true}},
                    parent_wallet: {populate: {package:true,users_permissions_user:true}}
         }});
-   
+
+        const transaction = transactions[0]
+
       try{
                
-            if (transactions[0].type === 'package') {
-                // const ntext =  `Congratulations `+ transactions[0].wallet.users_permissions_user.username +  `!. You acquired `+ transactions[0].wallet.package.name +
-                // ` package with your wallet id : ` + transactions[0].wallet.wallet_id  + ` wallet address : ` + transactions[0].wallet.wallet_address    
-
-                const ntext = `<div style="padding:1rem;"><h6 style="color:#FFC23C;">Congratulations ${transactions[0].wallet.users_permissions_user.username}</h6>You just acquired ${transactions[0].wallet.package.name} package with your <br> wallet id : ${transactions[0].wallet.wallet_id} <br> wallet address : ${transactions[0].wallet.wallet_address} </div>`
+            if (transaction.type === 'package') {
+              
+                const ntext = `<div style="padding:1rem;"><h6 style="color:#FFC23C;">Congratulations ${transaction.wallet.users_permissions_user.username}</h6> You just acquired ${transaction.wallet.package.name} package with your <br> wallet id : ${transaction.wallet.wallet_id} <br> wallet address : ${transaction.wallet.wallet_address} </div>`
 
                 strapi.entityService.create('api::notification.notification', {
                     data: {
                         text: ntext ,
                         type: 'transaction',
-                        users_permissions_user: transactions[0].users_permissions_user,
-                        transaction: transactions[0].id,
+                        users_permissions_user: transaction.users_permissions_user,
+                        transaction: transaction.id,
                         status: 'current'
                     }
-                })
-            } else if (transactions[0].type === 'commission') {
-                // const ntext =  `Congratulations `+ transactions[0].wallet.users_permissions_user.username +  `!. You received `+ transactions[0].amount +
-                // ` 888 tokens from your level ` + transactions[0].referral.level + ` referral: ` +  transactions[0].referral.child_wallet.wallet_id 
-                const ntext = `<div style="padding:1rem;"><h6 style="color:#FFC23C;">Congratulations  ${transactions[0].wallet.users_permissions_user.username}!</h6> You received ${transactions[0].amount} 888 tokens from your level ${transactions[0].referral.level} referral: ${transactions[0].referral.child_wallet.wallet_id} </div>`
+                })            
+
+            } else if (transaction.type === 'commission') {
+           
+                const ntext = `<div style="padding:1rem;"><h6 style="color:#FFC23C;">Congratulations  ${transaction.wallet.users_permissions_user.username}!</h6> You received ${transaction.amount} 888 tokens from your level ${transaction.referral.level} referral: ${transaction.referral.child_wallet.wallet_id} </div>`
 
                 strapi.entityService.create('api::notification.notification', {
                     data: {
                         text: ntext ,
                         type: 'transaction',
-                        users_permissions_user: transactions[0].users_permissions_user,
-                        transaction: transactions[0].id,
+                        users_permissions_user: transaction.users_permissions_user,
+                        transaction: transaction.id,
                         status: 'current'
                     }
-                })
-            } else if (transactions[0].type === 'harvest') {
+                })         
 
-                // const ntext =  ` You harvested `+ transactions[0].amount +
-                // ` 888 tokens from your earnings` 
+            } else if (transaction.type === 'harvest') {
 
-                const ntext = `<div style="padding:1rem;"><h6 style="color:#FFC23C;">Congratulations ${transactions[0].wallet.users_permissions_user.username}!</h6> You harvested ${transactions[0].amount} 888 tokens of your earnings. </div>`
+                const ntext = `<div style="padding:1rem;"><h6 style="color:#FFC23C;">Congratulations ${transaction.wallet.users_permissions_user.username}!</h6> You harvested ${transaction.amount} 888 tokens of your earnings. </div>`
 
                 strapi.entityService.create('api::notification.notification', {
                     data: {
                         text: ntext ,
                         type: 'transaction',
-                        users_permissions_user: transactions[0].users_permissions_user,
-                        transaction: transactions[0].id,
+                        users_permissions_user: transaction.users_permissions_user,
+                        transaction: transaction.id,
                         status: 'current'
                     }
-                })
-            } else if (transactions[0].type === 'withdrawal') {
+                })              
 
-                // const ntext =  ` You withdrew `+ transactions[0].amount +
-                // ` USDT from your wallet id: ` + transactions[0].wallet.wallet_id 
+            } else if (transaction.type === 'withdrawal') {
 
-                const ntext = `<div style="padding:1rem;">You withdrew ${transactions[0].amount} ${transactions[0].wallet.pool.currency} from your wallet id: ${transactions[0].wallet.wallet_id}</div>`
+            
+                const ntext = `<div style="padding:1rem;">You withdrew ${transaction.amount} ${transaction.wallet.pool.currency} from your wallet id: ${transaction.wallet.wallet_id}</div>`
 
                 strapi.entityService.create('api::notification.notification', {
                     data: {
                         text: ntext ,
                         type: 'transaction',
-                        users_permissions_user: transactions[0].users_permissions_user,
-                        transaction: transactions[0].id,
+                        users_permissions_user: transaction.users_permissions_user,
+                        transaction: transaction.id,
                         status: 'current'
                     }
                 })
-            } else if (transactions[0].type === 'gratitude') {
+               
+            } else if (transaction.type === 'gratitude') {
 
-                // const ntext =  ` You withdrew `+ transactions[0].amount +
-                // ` USDT from your wallet id: ` + transactions[0].wallet.wallet_id 
-
-                const ntext = `<div style="padding:1rem;">You received  gratitude reward from your parent wallet id: ${transactions[0].parent_wallet.wallet_id}</div>`
+                const ntext = `<div style="padding:1rem;"><h6 style="color:#FFC23C;">Congratulations ${transaction.wallet.users_permissions_user.username}!</h6> You received  gratitude reward from your parent wallet id: ${transaction.parent_wallet.wallet_id}</div>`
 
                 strapi.entityService.create('api::notification.notification', {
                     data: {
                         text: ntext ,
                         type: 'transaction',
-                        users_permissions_user: transactions[0].users_permissions_user,
-                        transaction: transactions[0].id,
+                        users_permissions_user: transaction.users_permissions_user,
+                        transaction: transaction.id,
                         status: 'current'
                     }
-                })
+                })                
             } 
 
     } catch(e) {

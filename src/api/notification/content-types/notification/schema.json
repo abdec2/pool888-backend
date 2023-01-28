@@ -38,6 +38,11 @@
     },
     "text": {
       "type": "text"
+    },
+    "referral": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::referral.referral"
     }
   }
 }

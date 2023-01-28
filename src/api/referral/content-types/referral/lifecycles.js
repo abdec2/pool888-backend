@@ -25,6 +25,7 @@ module.exports = {
                 status: 'current'
             }
         })
+        
     } catch(e) {
         console.log(e);
     }

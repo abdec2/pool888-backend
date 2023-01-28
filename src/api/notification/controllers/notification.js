@@ -10,26 +10,133 @@ module.exports = createCoreController('api::notification.notification', ({ strap
     // Method 1: Creating an entirely custom action
     async findByUser(ctx) {      
 
-            try {
-                const notifications = await strapi.entityService.findMany('api::notification.notification', {
-                    filters: {users_permissions_user: ctx.request.query.userid },
-                    sort: {createdAt: 'desc'}
-                 }) 
-                return notifications;
-    
-            } catch(e) {
-                console.log(e)
-            }
+        const lang = ctx.request.query.lang
+
+        try {
+            const notifications = await strapi.entityService.findMany('api::notification.notification', {
+                filters: {users_permissions_user: ctx.request.query.userid },
+                sort: {createdAt: 'desc'},
+                populate: { users_permissions_user:true, 
+                    transaction :{ populate: {users_permissions_user: true, 
+                    wallet: {populate: {package:true,users_permissions_user:true, pool:true}}, 
+                        referral: {
+                            populate: {
+                            parent_wallet: {
+                            package: true, users_permissions_user:true, pool:true
+                            },                       
+                            child_wallet: {
+                                package: true, users_permissions_user:true, pool:true
+                            }
+                            }
+                        },
+                        parent_wallet: {populate: {package:true,users_permissions_user:true}}}},
+                      referral: {
+                        populate: {
+                          parent_wallet: { populate: {
+                           package: true, users_permissions_user:true, pool:true
+                          }
+                        },                       
+                          child_wallet: { populate: {
+                             package: true, users_permissions_user:true, pool:true
+                            }
+                          }
+                        }
+                      },  
+                 }}) 
+                         
+        if ( lang === "en"){
+
+            const english_notifications = await Promise.all(notifications.map(async notification => {
+                return {
+                    "text" : notification.text,
+                    "createdAt" : notification.createdAt,
+                  }                
+            }))
+            return english_notifications
+
+        } else if (lang === "cn") {
+
+            const chinese_notifications = await Promise.all(notifications.map(async notification => {
+            
+            let cnText = await strapi.service('api::notification.notification').getChineseNotificationText(notification);
+
+        
+            return {
+                "text" : cnText,
+                "createdAt" : notification.createdAt,
+                }    
+                
+            }))
+            return chinese_notifications
+        }                
+
+    } catch(e) {
+        console.log(e)
+    }
     },
 
-    async getCurNotifications(ctx) {
-        
+    async getCurNotifications(ctx) {     
+      
+      const lang = ctx.request.query.lang
+
         try {
             const notifications = await strapi.entityService.findMany('api::notification.notification', {
                 filters: {users_permissions_user: ctx.request.query.userid , status: 'current'},
-                sort: {createdAt: 'desc'}
-             }) 
-            return notifications;
+                sort: {createdAt: 'desc'},
+                populate: { users_permissions_user:true, 
+                    transaction :{ populate: {users_permissions_user: true, 
+                    wallet: {populate: {package:true,users_permissions_user:true, pool:true}}, 
+                    referral: {
+                        populate: {
+                          parent_wallet: {
+                           package: true, users_permissions_user:true, pool:true
+                          },                       
+                          child_wallet: {
+                            package: true, users_permissions_user:true, pool:true
+                           }
+                        }
+                      },
+                      parent_wallet: {populate: {package:true,users_permissions_user:true}}}},
+                      referral: {
+                        populate: {
+                          parent_wallet: { populate: {
+                           package: true, users_permissions_user:true, pool:true
+                          }
+                        },                       
+                          child_wallet: { populate: {
+                             package: true, users_permissions_user:true, pool:true
+                            }
+                          }
+                        }
+                      },  
+                 }}) 
+
+                         
+        if ( lang === "en"){
+
+            const english_notifications = await Promise.all(notifications.map(async notification => {
+                return {
+                    "text" : notification.text,
+                    "createdAt" : notification.createdAt,
+                  }                
+            }))
+            return english_notifications
+
+        } else if (lang === "cn") {
+
+            const chinese_notifications = await Promise.all(notifications.map(async notification => {
+            
+             let cnText = await strapi.service('api::notification.notification').getChineseNotificationText(notification);
+
+        
+            return {
+                "text" : cnText,
+                "createdAt" : notification.createdAt,
+                }    
+                
+            }))
+            return chinese_notifications
+        }         
         } catch(e) {
             console.log(e)
         }    
