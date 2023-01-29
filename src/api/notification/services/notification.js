@@ -53,7 +53,7 @@ module.exports = createCoreService('api::notification.notification', ({ strapi }
                 
                 cntext = `<div style="padding:1rem;"><h6 style="color:#FFC23C;">恭喜  ${transaction.wallet.users_permissions_user.username}!</h6> 您从 ${transaction.referral.level} 级推荐人:${transaction.referral.child_wallet.wallet_id} 那里收到了 ${transaction.amount} 888 代币 </div>`
             
-            } /*else if (transaction.type === 'harvest') {
+            } else if (transaction.type === 'harvest') {
 
                 cntext = `<div style="padding:1rem;"><h6 style="color:#FFC23C;">恭喜  ${transaction.wallet.users_permissions_user.username}!</h6> 您收获了 ${transaction.amount} 888 代币的收入`
 
@@ -61,7 +61,7 @@ module.exports = createCoreService('api::notification.notification', ({ strapi }
 
                 cntext = `<div style="padding:1rem;">您从钱包 ID 中提取了 ${transaction.amount}: ${transaction.wallet.wallet_id}</div>`
 
-            } */else if (transaction.type === 'gratitude') {
+            } else if (transaction.type === 'gratitude') {
 
                 cntext = `<div style="padding:1rem;"><h6 style="color:#FFC23C;">恭喜  ${transaction.wallet.users_permissions_user.username}!</h6> 您收到了来自您上线推荐钱包id：${transaction.parent_wallet.wallet_id} 的感谢奖励`
 
