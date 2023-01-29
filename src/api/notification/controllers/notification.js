@@ -122,6 +122,7 @@ module.exports = createCoreController('api::notification.notification', ({ strap
                 return {
                     "text" : notification.text,
                     "createdAt" : notification.createdAt,
+                    "type": notification.transaction? notification.transaction.type: "walletconnect"
                   }                
             }))
             return english_notifications
@@ -136,6 +137,7 @@ module.exports = createCoreController('api::notification.notification', ({ strap
             return {
                 "text" : cnText,
                 "createdAt" : notification.createdAt,
+                "type": notification.transaction? notification.transaction.type: "walletconnect"
                 }    
                 
             }))
