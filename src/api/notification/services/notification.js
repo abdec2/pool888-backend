@@ -40,7 +40,7 @@ module.exports = createCoreService('api::notification.notification', ({ strapi }
        if ( type === "walletconnect" && referral !== null ){
 
             const percentage = await strapi.service('api::referral-add.referral-add').getPercentageOfReferral(referral.parent_wallet, referral.level)            
-            cntext = `<div style="padding:1rem;"><h6 style="color:#FFC23C;">Congratulations ${notification.users_permissions_user.username}!</h6> ${referral.child_wallet.wallet_id} 已作为您的 ${referral.level} 级推荐人加入您的网络。 您将赚取他们利润的 ${percentage}%</div>`
+            cntext = `<div style="padding:1rem;"><h6 style="color:#FFC23C;"> 恭喜 ${notification.users_permissions_user.username}!</h6> ${referral.child_wallet.wallet_id} 已作为您的 ${referral.level} 级推荐人加入您的网络。 您将赚取他们利润的 ${percentage}%</div>`
 
         } else if (type === "transaction"){
         
