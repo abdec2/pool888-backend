@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "transactions",
+  "info": {
+    "singularName": "transaction",
+    "pluralName": "transactions",
+    "displayName": "Transaction",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "wallet": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wallet.wallet"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "feededucted",
+        "package",
+        "staking",
+        "tokenspurchase",
+        "harvest",
+        "withdrawal",
+        "upgrade",
+        "commission",
+        "gratitude"
+      ]
+    },
+    "referral": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::referral.referral"
+    },
+    "amount": {
+      "type": "float"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "parent_wallet": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::wallet.wallet"
+    }
+  }
+}

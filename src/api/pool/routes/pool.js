@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * harvest router
+ * pool router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::harvest.harvest');
+module.exports = createCoreRouter('api::pool.pool');

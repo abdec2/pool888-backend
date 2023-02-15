@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pools",
+  "info": {
+    "singularName": "pool",
+    "pluralName": "pools",
+    "displayName": "Pool",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "token": {
+      "type": "string"
+    },
+    "decimals": {
+      "type": "integer"
+    },
+    "currency": {
+      "type": "enumeration",
+      "enum": [
+        "USDT",
+        "USDC",
+        "WETH",
+        "WMATIC"
+      ]
+    },
+    "harvest_interval": {
+      "type": "decimal"
+    },
+    "deposit_fee": {
+      "type": "integer"
+    },
+    "pid": {
+      "type": "integer"
+    }
+  }
+}

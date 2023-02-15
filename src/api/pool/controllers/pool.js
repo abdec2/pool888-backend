@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * withdrawal controller
+ * pool controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::withdrawal.withdrawal');
+module.exports = createCoreController('api::pool.pool');

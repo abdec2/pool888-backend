@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * harvest service
+ * pool service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::harvest.harvest');
+module.exports = createCoreService('api::pool.pool');

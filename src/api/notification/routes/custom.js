@@ -2,8 +2,8 @@ module.exports = {
     routes: [
       {
        method: 'GET',
-       path: '/wallet/walletExist',
-       handler: 'wallet.walletExist',
+       path: '/notification/findByUser',
+       handler: 'notification.findByUser',
        config: {
          policies: [],
          middlewares: [],
@@ -12,8 +12,8 @@ module.exports = {
 
       {
         method: 'GET',
-        path: '/wallet/userHasWallet',
-        handler: 'wallet.userHasWallet',
+        path: '/notification/setCurToArchived',
+        handler: 'notification.setCurToArchived',
         config: {
           policies: [],
           middlewares: [],
@@ -22,12 +22,13 @@ module.exports = {
 
        {
         method: 'GET',
-        path: '/wallet/getUserWallets',
-        handler: 'wallet.getUserWallets',
+        path: '/notification/getCurNotifications',
+        handler: 'notification.getCurNotifications',
         config: {
           policies: [],
           middlewares: [],
         },
-       },  
-    ]
-}
+       },
+    ],
+  };
+  

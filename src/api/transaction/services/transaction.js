@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * withdrawal service
+ * transaction service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::withdrawal.withdrawal');
+module.exports = createCoreService('api::transaction.transaction');
