@@ -18,7 +18,7 @@ module.exports = {
         const transaction = await strapi.entityService.create('api::transaction.transaction', {
             data: {
                 wallet: wallets[0].id,
-                amount: wallets[0].package.value ,
+                amount: wallets[0].balance ,
                 type: 'package',
                 users_permissions_user: wallets[0].users_permissions_user
             }
