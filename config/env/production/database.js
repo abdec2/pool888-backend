@@ -1,6 +1,5 @@
 module.exports = ({ env }) => ({
   connection: {
-    client: 'postgres',
     client: 'mysql',
     connection: {
       host: env('DATABASE_HOST', '127.0.0.1'),
@@ -14,4 +13,5 @@ module.exports = ({ env }) => ({
       },
     debug: false,
   },
+}
 });  
